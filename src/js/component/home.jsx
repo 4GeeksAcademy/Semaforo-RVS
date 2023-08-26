@@ -1,26 +1,33 @@
-import React from "react";
+import React, { useState } from 'react';
+import "../../styles/index.css"
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+const Semaforo = () => {
+	const [color, setColor] = useState("");
+	const [showButton, setShowButton] = useState(true);
 
-//create your first component
-const Home = () => {
+	const handleClick = () => {
+		setColor(color === "red" ? "yellow" : color === "yellow" ? "green" : "red");
+		setShowButton(!showButton);
+	};
+
 	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
+		<>
+			<div className="contenedorcable">
+				<div className="cable"></div>
+			</div>
+
+			<div className="contenedorsemaforo">
+				<div className="semaforo">
+					<div onClick={handleClick} className={color == "red" ? "newred" : "red"}></div>
+					<div onClick={handleClick} className={color == "yellow" ? "newyellow" : "yellow"}></div>
+					<div onClick={handleClick} className={color == "green" ? "newgreen" : "green"}></div>
+				</div>
+				<button onClick={handleClick}>Cambiar color</button>
+
+			</div>
+
+		</>
 	);
 };
 
-export default Home;
+export default Semaforo;
